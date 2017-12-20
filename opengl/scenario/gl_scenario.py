@@ -10,8 +10,14 @@ def draw_scenario_corrida():
 
     ########### Definindo Cenario ###########
     # importando os objetos ja setados, talvez precise modificar depois
-    path = os.path.normpath(os.path.join(__file__, '../../../objects/cube2.obj'))
+    path = os.path.normpath(os.path.join(__file__, '../../../objects/cube3.obj'))
     cube = obj.Obj().import_obj(path)
+
+    # arquibancada
+    path2 = os.path.normpath(os.path.join(__file__, '../../../objects/grandstand.obj'))
+    grandstand = obj.Obj().import_obj(path2)
+    grandstand.calculate_normals()
+
 
     # MATERIAIS
     # Cores dos Materiais & Componentes Especulares:
@@ -62,8 +68,29 @@ def draw_scenario_corrida():
     poste2_cube = copy.deepcopy(cube)
     poste2_cube.apply_material(poste2_material)
 
+    # MATERIAL ARQUIBANCADA 1
+    rgb_arquibancada1_material = [140/255, 23/255, 23/255]
+    arquibancada1_material = obj.Material(rgb_arquibancada1_material, rgb_arquibancada1_material, specular_term, 2)
+    arquibancada1_grandstand = copy.deepcopy(grandstand)
+    arquibancada1_grandstand.apply_material(arquibancada1_material)
+
+    # MATERIAL ARQUIBANCADA 2
+    rgb_arquibancada2_material = [207/255, 181/255, 59/255]
+    arquibancada2_material = obj.Material(rgb_arquibancada2_material, rgb_arquibancada2_material, specular_term, 2)
+    arquibancada2_grandstand = copy.deepcopy(grandstand)
+    arquibancada2_grandstand.apply_material(arquibancada2_material)
+
 
     ####################
+    # so teste
+    '''
+    glPushMatrix()
+    # glScalef(3., 0.1, 4.)
+    #glScalef(150, 0.01, 150)
+    glTranslatef(5, 0, 0)
+    draw_polygon(arquibancada2_grandstand)
+    glPopMatrix()
+    '''
 
 
     # GRAMADO
@@ -141,9 +168,22 @@ def draw_scenario_corrida():
     draw_polygon(poste1_cube)
     glPopMatrix()
 
+    #TESTANDO A ARQUIBANCADA
+    glPushMatrix()
+    glScalef(30, 10, 10)
+    glTranslatef(49, 0, 38)
+    draw_polygon(arquibancada1_grandstand)
+    glPopMatrix()
 
-
-
+    glPushMatrix()
+    #rotacao
+    #glRotatef(90, 0, 1, 0)
+    glRotate(90, 0, -50, 0)
+    glTranslatef(0, 0, 1)
+    glScalef(10, 10, 30)
+    glTranslatef(11,0,55)
+    draw_polygon(arquibancada2_grandstand)
+    glPopMatrix()
 
 
 
@@ -561,6 +601,7 @@ def draw_polygon(obj):
         glMaterialf(GL_FRONT, GL_SHININESS, face.material.attenuation)
 
         glBegin(GL_POLYGON)
+        glColor3fv((1, 1, 1))
         for vertex in face.vertices:
             #glNormal3fv(vertex.normal)
             glVertex3fv(vertex.coordinates[:3])
