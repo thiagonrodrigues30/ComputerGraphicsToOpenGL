@@ -31,8 +31,12 @@ class GLWidget(QOpenGLWidget):
         glViewport(0, 0, width, height)
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
-        gluPerspective(70, width / height, 0.5, 100)
-        gluLookAt(2.5,1.5,2.0, 0,1.5,2, 0,1,0)
+        #gluPerspective(70, width / height, 0.5, 100)
+        gluPerspective(90, width / height, 0.5, 200)
+        #gluLookAt(2.5,1.5,2.0, 0,1.5,2, 0,1,0)
+        #gluLookAt(0, 8, -10,  1, 1, 15,  0, 5, 3)
+        #gluLookAt(75, 10, 75,   7, -2, 7,   35, 10, 35)
+        gluLookAt(75, 70, 75,   75, 10, 75,   35, 10, 35)
 
 
 

@@ -36,7 +36,7 @@ def draw_scenario_corrida():
     rgb_madeira_material = [92 / 255, 51 / 255, 23 / 255]
     madeira_material = obj.Material(rgb_madeira_material, rgb_madeira_material, specular_term, 2)
     madeira_cube = copy.deepcopy(cube)
-    madeira_cube.apply_material(gramado_material)
+    madeira_cube.apply_material(madeira_material)
 
     # MATERIAL LINHA DE CHEGADA 1
     rgb_chegada1_material = [0, 0, 0]
@@ -72,6 +72,81 @@ def draw_scenario_corrida():
     glScalef(150, 0.01, 150)
     draw_polygon(gramado_cube)
     glPopMatrix()
+
+    # LINHA CHEGADA
+    glPushMatrix()
+    glScalef(1.25, 1.1, 1.25)
+    glTranslatef(50, 0, 50)#(51.25, 0, 50)
+    draw_polygon(chegada1_cube)
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1.25, 1.1, 1.25)
+    glTranslatef(44, 11, 45)#(51.25, 0, 51.25)
+    draw_polygon(chegada2_cube)
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1.25, 1.1, 1.25)
+    glTranslatef(50, 0, 52.5)#(51.25, 0, 52.5)
+    draw_polygon(chegada1_cube)
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1.25, 1.1, 1.25)
+    glTranslatef(50, 0, 53.75)#(51.25, 0, 53.75)
+    draw_polygon(chegada2_cube)
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1.25, 1.1, 1.25)
+    glTranslatef(51.25, 0, 53.75)#(52.5, 0, 53.75)
+    draw_polygon(chegada2_cube)
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1.25, 1.1, 1.25)
+    glTranslatef(51.25, 0, 52.5)#(52.5, 0, 52.5)
+    draw_polygon(chegada1_cube)
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1.25, 1.1, 1.25)
+    glTranslatef(51.25, 0, 52.5)#(52.5, 0, 51.25)
+    draw_polygon(chegada2_cube)
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1.25, 1.1, 1.25)
+    glTranslatef(51.25, 0, 52.5)#(52.5, 0, 50)
+    draw_polygon(chegada1_cube)
+    glPopMatrix()
+
+    # POSTE
+    glPushMatrix()
+    glScalef(3, 1, 3)
+    glTranslatef(42, 1, 42)
+    draw_polygon(poste1_cube)
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1, 7, 1)
+    glTranslatef(43, 2, 43)#(44, 2, 43)
+    draw_polygon(poste2_cube)
+    glPopMatrix()
+
+    glPushMatrix()
+    glScalef(1, 5, 1)
+    glTranslatef(44, 11, 44)#(45, 11, 44)
+    draw_polygon(poste1_cube)
+    glPopMatrix()
+
+
+
+
+
+
+
 
 
 
@@ -487,7 +562,7 @@ def draw_polygon(obj):
 
         glBegin(GL_POLYGON)
         for vertex in face.vertices:
-            glNormal3fv(vertex.normal)
+            #glNormal3fv(vertex.normal)
             glVertex3fv(vertex.coordinates[:3])
         glEnd()
         '''
